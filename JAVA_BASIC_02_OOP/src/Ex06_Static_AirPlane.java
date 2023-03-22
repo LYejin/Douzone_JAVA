@@ -6,7 +6,6 @@ public class Ex06_Static_AirPlane {
 		AirPlane airPlane1 = new AirPlane();
 		airPlane1.setAirPlane("대한항공", 808);
 		airPlane1.airPlaneTotalPrint();
-		
 
 		AirPlane airPlane2 = new AirPlane();
 		airPlane2.setAirPlane("진에어", 707);
