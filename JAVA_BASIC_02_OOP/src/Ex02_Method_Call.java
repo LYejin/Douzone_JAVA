@@ -27,13 +27,13 @@ public class Ex02_Method_Call {
 		
 		tv.brand = "삼성";
 		tv.channel = 100;
-		tv.print();
+		tv.tvInfo();
 		
-		tv.channelMovePlus();
-		tv.print();
+		tv.ch_Up();
+		tv.tvInfo();
 		
-		tv.channelMoveMinus();
-		tv.print();
+		tv.ch_Down();
+		tv.tvInfo();
 		
 		
 	}

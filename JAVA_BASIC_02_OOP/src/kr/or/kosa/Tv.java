@@ -8,27 +8,20 @@ package kr.or.kosa;
  -> 채널을 감소 시키는 기능을 가지고 있다
  Tv는 채널 정보와 브랜드 이름을 볼 수 (출력) 있는 기능을 가지고 있다
  */
+
 public class Tv {
-	public int channel;
-	public String brand;
+	public int channel; // default > 0
+	public String brand; // default > null
 	
-	public void setChannel(int i) {
-		channel = i;
-	}
-	
-	public void setBrand(String str) {
-		brand = str;
-	}
-	
-	public int channelMovePlus() {
+	public int ch_Up() {
 		return channel++;
 	}
 	
-	public int channelMoveMinus() {
+	public int ch_Down() {
 		return channel--;
 	}
 	
-	public void print() {
+	public void tvInfo() {
 		System.out.printf("채널 정보 : %d, 브랜드 이름 : %s \n", channel, brand);
 	}
 	
