@@ -15,9 +15,11 @@ public class FlowChart {
 		money = Integer.parseInt(sc.nextLine());
 		
 		
-		do {
+		while (true) {
 			num = (int) (money/unit);
 			System.out.printf("%d %d개 \n", unit, num);
+		
+			if (unit<=1) break;	
 			
 			money = money - (unit*num);
 			if (sw == 0) {
@@ -27,8 +29,6 @@ public class FlowChart {
 				unit = unit/5;	
 				sw=0;
 			} 
-				
-		} while(unit >= 1); // ???
-		
+		}
 	}
 }
