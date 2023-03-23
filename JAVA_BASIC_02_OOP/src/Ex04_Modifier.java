@@ -12,6 +12,7 @@ public class Ex04_Modifier {
 		
 		System.out.println("년도 : " + notebook.year);
 		*/
+		
 		NoteBook notebook = new NoteBook();
 		notebook.setColor("blue");
 		notebook.setYear(-100);; //The field NoteBook.year is not visible 안 보여..
