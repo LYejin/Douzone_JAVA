@@ -16,22 +16,47 @@ package kr.or.kosa;
  */
 
 
+//public class AirPlane {
+//	private String airPlaneName; // 캡슐화 
+//	private int airPlaneNumber;
+//	private static int airPlaneTotalCount; // 모든 객체가 공유하는 자원 
+//	
+//	public void setAirPlane(String name, int number) { // 생성자를 안 배워서 생성자처럼 만들기 
+//		airPlaneName = name; // this 안 배워서 변수면 안 이뻐요 
+//		airPlaneNumber = number;
+//		airPlaneTotalCount++; // 누적 
+//		airPlanePrint();
+//	}
+//	
+//	private void airPlanePrint() { // 클래스 내부에서 사용되는 함수 처럼 (private 함)
+//		System.out.printf("비행기 이름 : %s, 비행기 번호 : %d \n", airPlaneName, airPlaneNumber);
+//	}
+//	
+//	public void airPlaneTotalPrint() {
+//		System.out.printf("total : %d \n", airPlaneTotalCount);
+//	}
+//}
+
+
+// 생성자를 사용해서 아래 코드를 수정하세요
+// 아직 this는 쓰지 마세요 
 public class AirPlane {
 	private String airPlaneName; // 캡슐화 
 	private int airPlaneNumber;
 	private static int airPlaneTotalCount; // 모든 객체가 공유하는 자원 
-	
-	public void setAirPlane(String name, int number) { // 생성자를 안 배워서 생성자처럼 만들기 
+
+	// public AirPlane() {} 사용하지 않아요 
+	public AirPlane (String name, int number) {
 		airPlaneName = name; // this 안 배워서 변수면 안 이뻐요 
 		airPlaneNumber = number;
 		airPlaneTotalCount++; // 누적 
-		airPlanePrint();
+//		airPlanePrint(); 생성자는 함수를 호출할 수 없다 
 	}
-	
-	private void airPlanePrint() { // 클래스 내부에서 사용되는 함수 처럼 (private 함)
+
+	public void airPlanePrint() { // 클래스 내부에서 사용되는 함수 처럼 (private 함)
 		System.out.printf("비행기 이름 : %s, 비행기 번호 : %d \n", airPlaneName, airPlaneNumber);
 	}
-	
+
 	public void airPlaneTotalPrint() {
 		System.out.printf("total : %d \n", airPlaneTotalCount);
 	}
