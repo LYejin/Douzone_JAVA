@@ -52,8 +52,8 @@ public class Ex10_Method_Call {
 		vcall(d.i); // 1111
 		System.out.println("after d.i : " + d.i); // 그대로 1111
 		
-		// 교재 6장 
-	
+		// 교재 6장  
+		
 	}
 
 }
