@@ -46,9 +46,9 @@ public class AirPlane {
 	private static int airPlaneTotalCount; // 모든 객체가 공유하는 자원 
 
 	// public AirPlane() {} 사용하지 않아요 
-	public AirPlane (String name, int number) {
-		airPlaneName = name; // this 안 배워서 변수면 안 이뻐요 
-		airPlaneNumber = number;
+	public AirPlane (String airPlaneName, int airPlaneNumber) {
+		this.airPlaneName = airPlaneName; // this 안 배워서 변수면 안 이뻐요 
+		this.airPlaneNumber = airPlaneNumber;
 		airPlaneTotalCount++; // 누적 
 //		airPlanePrint(); 생성자는 함수를 호출할 수 없다 
 	}

@@ -49,7 +49,7 @@ class makeCar {
 
 public class Ex14_Constructor {
 	public static void main(String[] args) {
-		
+		Car6 car6 = new Car6(); // 원칙적인 방법은 객체 생성시 한번에 하나의 생성자만 호출 
 	}
 
 }
