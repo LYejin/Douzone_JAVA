@@ -26,10 +26,18 @@ public class Ex05_Object_Array_Quiz {
 			emplist[i].empInfoPrint();
 		}
 		
+		///////////////////////////////////////////////////
 		
+		// 두번째 방법
+		Emp[] emplist2 = new Emp[] {new Emp(1000,"홍길동"),new Emp(2000,"김유신"),new Emp(3000,"유관순")};
+		for(Emp emp : emplist2) {
+			emp.empInfoPrint();
+		}
 		
+		//////////////////////////////////////////////////
+		
+		// 세번째 방법 
 		Emp[] person = {new Emp(1000, "홍길동"), new Emp(2000, "김유신"), new Emp(3000, "유관순")};
-		
 		for (Emp p : person) {
 			p.empInfoPrint();
 		}
