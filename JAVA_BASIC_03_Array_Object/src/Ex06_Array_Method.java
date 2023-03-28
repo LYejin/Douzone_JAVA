@@ -38,7 +38,7 @@ class OverClass {
 public class Ex06_Array_Method {
 
 	public static void main(String[] args) {
-		OverClass overt = new OverClass();
+		OverClass overt = new OverClass(); 
 		int[] source = {10,20,30,40,50}; 
 		int[] ta = overt.add(source);
 		for(int value : ta) {
