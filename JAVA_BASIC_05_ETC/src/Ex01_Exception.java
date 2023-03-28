@@ -53,7 +53,6 @@ public class Ex01_Exception {
 			 */
 		} 
 		System.out.println("main end");
-
 	}
 
 }
