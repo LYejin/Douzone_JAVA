@@ -1,4 +1,4 @@
-import kr.or.kosa.dto.Emp;
+import kr.or.kosa.Emp;
 
 public class Ex05_Object_Array_Quiz {
 

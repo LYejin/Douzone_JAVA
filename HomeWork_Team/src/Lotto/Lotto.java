@@ -17,8 +17,8 @@ import java.util.Scanner;
  
  기능 
 - 연속된 수 나오면 제거
-- 랜덤 잭팟 숫자(컴퓨터)를 맞추면 현재 번호와 로또 번호가 몇 개 일치하는지 알려주고 바꿀 기회를 준다
-- 입력한 숫자 외 자동입력
+- 이전 5회차 번호 제외
+- 이전 5회차 중 가장 많이 나온 번호는 넣어주기
  
  Lotto lotto = new Lotto();
  lotto.start(); 
@@ -32,29 +32,122 @@ import java.util.Scanner;
 지난차수  번호와 동일하면 재추출 등 1개 추가적인 선택 
 */
 
-
 public class Lotto {
 	private Scanner scanner;
-	
-	public Lotto() { // 생성자 
+	private int[] lottoNumber = new int[6];
+
+	public Lotto() { // 생성자
 		scanner = new Scanner(System.in);
 	}
-	
+
 	private String showMenu() {
 		System.out.println("***************************");
 		System.out.println("**1. 당첨 예상 번호 추출하기**");
 		System.out.println("**2. 프로그램 종료 ^^! ^^! ^^**");
 		System.out.println("***************************");
-		System.out.println("원하는 메뉴 번호를 입력하세요 :");
+		System.out.print("원하는 메뉴 번호를 입력하세요 : ");
 		String selectnum = scanner.nextLine();
-		return selectnum;
+		return selectnum; // 선택한 메뉴 받음
 	}
-	
+
+	private void selectMenu() {
+		while (true) {
+			switch (showMenu()) {
+			case "1": randomNumberDrawing();
+				break;
+			case "2":
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("올바른 번호를 입력해주세요.");
+			}
+		}
+	}
+
+	// 5개 번호 5번 뽑기 번호 저장
+	private int[] lottoDrawing5() {
+		int[] lottoArray = new int[46];
+		for (int z = 0; z < 5; z++) {
+			int[] lotto = new int[6];
+			// 중복값 제거
+			for (int i = 0; i < 6; i++) {
+				lotto[i] = (int) (Math.random() * 45 + 1);
+				for (int j = 0; j < i; j++) {
+					if (lotto[i] == lotto[j]) {
+						i--;
+						break;
+					}
+				}
+				lottoArray[lotto[i]]++;
+			}
+		}
+		for (int i=0; i<46;i++) {
+			 System.out.println(i + "번 : " + lottoArray[i]);
+		}
+		return lottoArray;
+	}
+
+	// 5회차 중 가장 많이 나온 숫자 구하기 (겹칠시 제일 작은 값) -> 무조건 넣어주고
+	private int bestNumber(int[] intArr) {
+		int max = intArr[0];
+		int num = 0;
+		for (int i = 0; i < intArr.length; i++) {
+			if (intArr[i] > max) {
+				max = intArr[i];
+				num = i;
+			}
+		}
+		System.out.println("maxNum : " + num);
+		return num;
+	}
+
+	// 랜덤 번호 뽑기 (5개 숫자) + 5회차에 나온 애들 제거 및 많이 나온 숫자 제외, 연속된 수 제거
+	private void randomNumberDrawing() {
+		int[] lottoArray = lottoDrawing5();
+		int bn = bestNumber(lottoArray);
+		lottoNumber[0] = bn;
+		for (int i = 1; i < 6; i++) {
+			lottoNumber[i] = (int) (Math.random() * 45 + 1);
+			int number = lottoArray[lottoNumber[i]];
+			if (number >= 1) {
+				i--;
+				continue;
+			}
+			for (int j = 0; j < i; j++) {
+				if (lottoNumber[i] == lottoNumber[j] || lottoNumber[i] == lottoNumber[j]+1 || lottoNumber[i] == lottoNumber[j]-1) {
+					i--;
+					break;
+				}
+			}
+		}
+		sortArr(lottoNumber);
+		System.out.print("당첨 예상 번호는 ");
+		for(int i = 0 ; i < lottoNumber.length ; i++) {
+			System.out.print(lottoNumber[i] + " ");
+		}
+		System.out.print("입니다.");
+	}
+
+	// 정렬 한번 해주기
+	private void sortArr(int[] lotto) {
+		// 정렬
+		for (int i = 0; i < lotto.length; i++) {
+			for (int j = i + 1; j < lotto.length; j++) {
+				if (lotto[i] > lotto[j]) {
+					int swap = lotto[i];
+					lotto[i] = lotto[j];
+					lotto[j] = swap;
+				}
+			}
+		}
+	}
+
 	public void start() {
-		showMenu();
+		selectMenu();
 	}
-	
-	//여러가지 기능을 가지는 함수를 생성 활용하세요
+
+	// 여러가지 기능을 가지는 함수를 생성 활용하세요
 	// 기능 >> method >> 함수 하나당 기능 하나
 	// public >> 참조변수
 	// private >> 내부 사용 (공통)
