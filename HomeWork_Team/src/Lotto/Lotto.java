@@ -35,6 +35,7 @@ import java.util.Scanner;
 public class Lotto {
 	private Scanner scanner;
 	private int[] lottoNumber = new int[6];
+	
 
 	public Lotto() { // 생성자
 		scanner = new Scanner(System.in);
@@ -109,8 +110,7 @@ public class Lotto {
 		lottoNumber[0] = bn;
 		for (int i = 1; i < 6; i++) {
 			lottoNumber[i] = (int) (Math.random() * 45 + 1);
-			int number = lottoArray[lottoNumber[i]];
-			if (number >= 1) {
+			if (lottoArray[lottoNumber[i]] >= 1) {
 				i--;
 				continue;
 			}
