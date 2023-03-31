@@ -29,7 +29,6 @@ class Product2{  //extends Object
 		this.price = price;
 		this.bonuspoint = (int)(this.price/10.0);
 	}
-	
 }
 
 class KtTv2 extends Product2{
@@ -84,9 +83,6 @@ class Buyer2{
 		this.money = money;
 		this.bonuspoint = bonuspoint;
 	}		
-	
-	
-	
 	
 	void Buy(Product2 n) { 
 		if(this.money < n.price ) {
