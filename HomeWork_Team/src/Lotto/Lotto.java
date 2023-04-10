@@ -1,6 +1,14 @@
 package Lotto;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 /*
  기능 
@@ -12,6 +20,10 @@ import java.util.Scanner;
 public class Lotto {
 	private Scanner scanner;
 	private int[] lottoNumber;
+	FileReader fr = null;
+	BufferedReader br = null;
+	FileOutputStream fos = null;
+	BufferedOutputStream bos = null;
 	
 
 	public Lotto() { // 생성자
@@ -44,6 +56,16 @@ public class Lotto {
 		}
 	}
 
+	private String lottoDrawing() {
+		Set<Integer> ts = new TreeSet<>();
+		// 중복값 제거
+		while (ts.size() < 7) {
+			int num = (int) (Math.random() * 45 + 1);
+			ts.add(num);
+		}
+		return ts.toString();
+	}
+	
 	// 5개 번호 5번 뽑기 번호 저장
 	private int[] lottoDrawing5() {
 		int[] lottoArray = new int[46];
@@ -80,6 +102,20 @@ public class Lotto {
 		System.out.println("maxNum : " + num);
 		return num;
 	}
+	
+	// 정렬 한번 해주기
+		private void sortArr(int[] lotto) {
+			// 정렬
+			for (int i = 0; i < lotto.length; i++) {
+				for (int j = i + 1; j < lotto.length; j++) {
+					if (lotto[i] > lotto[j]) {
+						int swap = lotto[i];
+						lotto[i] = lotto[j];
+						lotto[j] = swap;
+					}
+				}
+			}
+		}
 
 	// 랜덤 번호 뽑기 (5개 숫자) + 5회차에 나온 애들 제거 및 많이 나온 숫자 제외, 연속된 수 제거
 	private void randomNumberDrawing() {
@@ -107,21 +143,43 @@ public class Lotto {
 		System.out.print("입니다.");
 	}
 
-	// 정렬 한번 해주기
-	private void sortArr(int[] lotto) {
-		// 정렬
-		for (int i = 0; i < lotto.length; i++) {
-			for (int j = i + 1; j < lotto.length; j++) {
-				if (lotto[i] > lotto[j]) {
-					int swap = lotto[i];
-					lotto[i] = lotto[j];
-					lotto[j] = swap;
-				}
-			}
-		}
-	}
-
 	public void start() {
 		selectMenu();
+	}
+	
+	public void Write() {
+		try {
+			FileWriter fw = new FileWriter("Lotto.txt", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write("로또 번호 : ");
+			bw.write(lottoDrawing());
+			bw.newLine();
+			bw.flush();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+		}
+	}
+	
+	public void Read() {
+		try {
+			fr = new FileReader("Lotto.txt");
+			br = new BufferedReader(fr);
+			//line 단위 처리 (장점)
+			String line = "";
+			for (int i=0; (line = br.readLine()) != null; i++) {
+				System.out.println(line);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				br.close();
+				fr.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		
 	}
 }
